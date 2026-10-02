@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dokumen dan Database — Dasbor Kepala SPPG</title>
+<meta name="description" content="Kumpulan tautan dokumen dan database untuk Kepala SPPG Purwakarta Plered Palinggihan 2.">
+<meta name="theme-color" content="#071e48">
+<link rel="icon" type="image/png" href="assets/logo-bgn.png">
+<link rel="apple-touch-icon" href="assets/logo-bgn.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+  // Terapkan tema tersimpan sebelum render agar tidak berkedip.
+  try {
+    var t = localStorage.getItem('theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-go" viewBox="0 0 20 20"><path d="M7 4h9v9M16 4L5 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-next" viewBox="0 0 20 20"><path d="M8 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 20 20"><path d="M17 11.5A7 7 0 018.5 3a7 7 0 108.5 8.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 1.8v2.2M10 16v2.2M18.2 10H16M4 10H1.8M15.6 4.4l-1.55 1.55M5.95 14.05L4.4 15.6M15.6 15.6l-1.55-1.55M5.95 5.95L4.4 4.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+</svg>
+
+<div class="wrap">
+
+  <header class="hero">
+    <img class="logo" src="assets/logo-bgn.png" alt="Logo Badan Gizi Nasional" width="68" height="68">
+    <div class="hero-text">
+      <p class="eyebrow">Badan Gizi Nasional</p>
+      <h1>Dokumen dan Database</h1>
+      <p class="unit">SPPG Purwakarta Plered Palinggihan 2</p>
+    </div>
+    <img class="logo" src="assets/logo-sppi.png" alt="Logo Sarjana Penggerak Pembangunan Indonesia" width="68" height="68">
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Ganti tema gelap/terang">
+      <svg class="icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+      <svg class="icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+    </button>
+  </header>
+
+  <a class="back-link" href="index.html">
+    <svg aria-hidden="true"><use href="#i-go"/></svg>
+    Kembali ke Dasbor
+  </a>
+
+  <!--
+    CARA MENAMBAH GRUP DOKUMEN BARU: salin satu blok <button class="app group">,
+    lalu tambahkan data group yang sepadan di object DOC_GROUPS pada <script> di bawah
+    (key harus sama dengan data-group pada tombol).
+  -->
+  <section aria-labelledby="h-dok">
+    <h2 id="h-dok">Pilih Kategori Dokumen</h2>
+    <div class="grid">
+
+      <button type="button" class="app group" data-group="sop">
+        <span class="mono" aria-hidden="true">SOP</span>
+        <span class="name">Standar Operasional Prosedur</span>
+        <svg class="go" aria-hidden="true"><use href="#i-next"/></svg>
+      </button>
+
+    </div>
+  </section>
+
+  <footer>
+    <span>Klik kartu untuk membuka daftar tautan, lalu pilih dokumen yang ingin dibuka.</span>
+    <span>SPPG Purwakarta Plered Palinggihan 2 · Badan Gizi Nasional</span>
+  </footer>
+
+</div>
+
+<!-- Jendela daftar dokumen (grup) -->
+<dialog id="dlg-group" aria-labelledby="dlgg-title">
+  <div class="dlg-head">
+    <span class="mono" id="dlgg-mono" aria-hidden="true"></span>
+    <div class="dlg-titles">
+      <h3 id="dlgg-title"></h3>
+    </div>
+  </div>
+  <ul class="doc-list" id="dlgg-list"></ul>
+  <div class="actions">
+    <button type="button" class="btn ghost" id="dlgg-close">Tutup</button>
+  </div>
+</dialog>
+
+<script>
+  // Tombol ganti tema gelap/terang, tersimpan di localStorage (sama seperti index.html).
+  (function () {
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    var root = document.documentElement;
+    var mql = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function current() {
+      var stored = root.getAttribute('data-theme');
+      if (stored === 'light' || stored === 'dark') return stored;
+      return mql.matches ? 'dark' : 'light';
+    }
+
+    btn.addEventListener('click', function () {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+
+  // Daftar grup dokumen/database. Tambah entri baru di sini untuk membuka tombol
+  // baru pada halaman ini (cocokkan key dengan data-group pada tombol).
+  var DOC_GROUPS = {
+    sop: {
+      mono: 'SOP',
+      title: 'Standar Operasional Prosedur',
+      items: [
+        { label: 'I. Perencanaan dan Pengadaan Bahan Pangan', url: 'https://s.id/PerencanaanDanPengadaanBahan' },
+        { label: 'II. Penerimaan dan Penyimpanan Bahan Pangan', url: 'https://s.id/PenerimaanDanPenyimpananBahan' },
+        { label: 'III. Persiapan dan Pengolahan Makanan', url: 'https://s.id/PersiapanDanPengelolahan' },
+        { label: 'IV. Pemorsian, Pelabelan, dan Penyaluran MBG', url: 'https://s.id/PemorsianPelabelanPenyaluranMBG' },
+        { label: 'V. Pengendalian Mutu dan Keamanan Pangan', url: 'https://s.id/PengendalianMutuKeamananPangan' },
+        { label: 'VI. Komunikasi, Penanganan Produk Tidak Layak, dan Insiden Keamanan Pangan', url: 'https://s.id/ProdukTidakLayak' },
+        { label: 'VII. Higiene, Sanitasi, dan Keselamatan Kerja', url: 'https://s.id/HigieneSanitasiDanK3' },
+        { label: 'VIII. Pemeliharaan Sarana, Pengelolaan Sampah, dan Limbah', url: 'https://s.id/PemeliharaanPengelolaanLimbah' }
+      ]
+    }
+  };
+
+  // Klik tombol grup membuka jendela berisi daftar tautan dokumen.
+  (function () {
+    var dlg = document.getElementById('dlg-group');
+    if (!dlg || typeof dlg.showModal !== 'function') return;
+    var mono = document.getElementById('dlgg-mono');
+    var title = document.getElementById('dlgg-title');
+    var list = document.getElementById('dlgg-list');
+
+    document.querySelectorAll('button.app.group').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var group = DOC_GROUPS[btn.dataset.group];
+        if (!group) return;
+        mono.textContent = group.mono;
+        title.textContent = group.title;
+        list.innerHTML = '';
+        group.items.forEach(function (item, i) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.href = item.url;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          a.innerHTML =
+            '<span class="num">' + (i + 1) + '</span>' +
+            '<span class="label">' + item.label + '</span>' +
+            '<svg aria-hidden="true"><use href="#i-go"/></svg>';
+          li.appendChild(a);
+          list.appendChild(li);
+        });
+        dlg.showModal();
+      });
+    });
+
+    document.getElementById('dlgg-close').addEventListener('click', function () { dlg.close(); });
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+  })();
+</script>
+</body>
+</html>

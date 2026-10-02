@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dasbor Kepala SPPG</title>
+<meta name="description" content="Pintasan aplikasi dan website BGN untuk Kepala SPPG Purwakarta Plered Palinggihan 2.">
+<meta name="theme-color" content="#071e48">
+<link rel="icon" type="image/png" href="assets/logo-bgn.png">
+<link rel="apple-touch-icon" href="assets/logo-bgn.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+  // Terapkan tema tersimpan sebelum render agar tidak berkedip.
+  try {
+    var t = localStorage.getItem('theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-go" viewBox="0 0 20 20"><path d="M7 4h9v9M16 4L5 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-next" viewBox="0 0 20 20"><path d="M8 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 20 20"><path d="M17 11.5A7 7 0 018.5 3a7 7 0 108.5 8.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 1.8v2.2M10 16v2.2M18.2 10H16M4 10H1.8M15.6 4.4l-1.55 1.55M5.95 14.05L4.4 15.6M15.6 15.6l-1.55-1.55M5.95 5.95L4.4 4.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+</svg>
+
+<div class="wrap">
+
+  <header class="hero">
+    <img class="logo" src="assets/logo-bgn.png" alt="Logo Badan Gizi Nasional" width="68" height="68">
+    <div class="hero-text">
+      <p class="eyebrow">Badan Gizi Nasional</p>
+      <h1>Dasbor Kepala SPPG</h1>
+      <p class="unit">SPPG Purwakarta Plered Palinggihan 2</p>
+    </div>
+    <img class="logo" src="assets/logo-sppi.png" alt="Logo Sarjana Penggerak Pembangunan Indonesia" width="68" height="68">
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Ganti tema gelap/terang">
+      <svg class="icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+      <svg class="icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+    </button>
+  </header>
+
+  <!--
+    CARA MENGEDIT: setiap kartu adalah satu blok <a class="app">.
+    Isi jendela keterangan diambil dari atribut data-*:
+      data-title  nama aplikasi        data-sub    subjudul (boleh kosong)
+      data-desc   keterangan singkat   data-roles  pengakses
+      data-report laporan, pisahkan koma (Harian, Mingguan, Bulanan, Kondisional)
+    href berisi alamat aplikasi yang dibuka oleh tombol VISIT.
+  -->
+
+  <!-- ====== APLIKASI ====== -->
+  <section aria-labelledby="h-utama">
+    <h2 id="h-utama">Aplikasi</h2>
+    <div class="grid main">
+
+      <a class="app" href="https://mpm-sipgn.bgn.go.id/" target="_blank" rel="noopener noreferrer"
+         data-title="Management Penerima Manfaat" data-sub="SIPGN · Manajemen Penerima Manfaat"
+         data-desc="Akses modul Manajemen Penerima Manfaat (MPM) untuk SIPGN melalui Single Sign-On resmi."
+         data-roles="Kepala SPPG, Asisten Lapangan" data-report="Harian, Kondisional">
+        <span class="mono" aria-hidden="true">MP</span>
+        <span class="name">Management Penerima Manfaat</span>
+        <svg class="go" aria-hidden="true"><use href="#i-next"/></svg>
+      </a>
+
+      <a class="app" href="https://sipgn-siphr.bgn.go.id/" target="_blank" rel="noopener noreferrer"
+         data-title="SIPGN SIPHR" data-sub="SIPGN - Manajemen Tenaga Kerja"
+         data-desc="Absensi harian, manajemen staf dan relawan SPPG."
+         data-roles="Kepala SPPG" data-report="Harian">
+        <span class="mono" aria-hidden="true">HR</span>
+        <span class="name">SIPGN SIPHR</span>
+        <svg class="go" aria-hidden="true"><use href="#i-next"/></svg>
+      </a>
+
+      <a class="app" href="https://birosdmo.bgn.go.id/" target="_blank" rel="noopener noreferrer"
+         data-title="Biro SDMO" data-sub="Sumber Daya Manusia dan Organisasi BGN"
+         data-desc="Akses database Badan Gizi Nasional."
+         data-roles="Kepala SPPG, Pengawas Keuangan, Pengawas Gizi" data-report="Kondisional">
+        <span class="mono" aria-hidden="true">SD</span>
+        <span class="name">Biro SDMO</span>
+        <svg class="go" aria-hidden="true"><use href="#i-next"/></svg>
+      </a>
+
+      <a class="app" href="https://coreconnect-sipgn.bgn.go.id/" target="_blank" rel="noopener noreferrer"
+         data-title="Core Connect" data-sub="BGN Core Connect"
+         data-desc=""
+         data-roles="Kepala SPPG" data-report="Harian">
+        <span class="mono" aria-hidden="true">CC</span>
+        <span class="name">Core Connect</span>
+        <svg class="go" aria-hidden="true"><use href="#i-next"/></svg>
+      </a>
+
+      <a class="app" href="https://pop-sipgn.bgn.go.id/" target="_blank" rel="noopener noreferrer"
+         data-title="Point of Production" data-sub="SIPGN · Point Of Production (POP)"
+         data-desc="Akses modul Point of Production (POP) untuk SIPGN melalui Single Sign-On resmi."
+         data-roles="Kepala SPPG, Asisten Lapangan" data-report="Harian">
+        <span class="mono" aria-hidden="true">PO</span>
+        <span class="name">Point of Production</span>
+        <svg class="go" aria-hidden="true"><use href="#i-next"/></svg>
+      </a>
+
+      <a class="app" href="https://tauwascare.bgn.go.id/" target="_blank" rel="noopener noreferrer"
+         data-title="Tauwas Care" data-sub=""
+         data-desc="Pemantauan dan Pengawasan."
+         data-roles="Kepala SPPG" data-report="Mingguan, Bulanan">
+        <span class="mono" aria-hidden="true">TC</span>
+        <span class="name">Tauwas Care</span>
+        <svg class="go" aria-hidden="true"><use href="#i-next"/></svg>
+      </a>
+
+      <a class="app" href="https://sipgn-sipsmo-web.bgn.go.id/" target="_blank" rel="noopener noreferrer"
+         data-title="Management Operasional (Dialur)" data-sub=""
+         data-desc="Sistem Informasi Management Operasional SPPG."
+         data-roles="Kepala SPPG" data-report="Harian, Mingguan, Bulanan, Kondisional">
+        <span class="mono" aria-hidden="true">MO</span>
+        <span class="name">Management Operasional (Dialur)</span>
+        <svg class="go" aria-hidden="true"><use href="#i-next"/></svg>
+      </a>
+
+      <a class="app" href="https://digit.kemenkeu.go.id/" target="_blank" rel="noopener noreferrer"
+         data-title="Digit Kemenkeu" data-sub=""
+         data-desc="Sistem Informasi Audit dan Pelaporan BGN dan Kementerian Keuangan."
+         data-roles="Kepala SPPG, Pengawas Keuangan" data-report="Harian">
+        <span class="mono" aria-hidden="true">DK</span>
+        <span class="name">Digit Kemenkeu</span>
+        <svg class="go" aria-hidden="true"><use href="#i-next"/></svg>
+      </a>
+
+      <a class="app" href="https://karegjabar.id/" target="_blank" rel="noopener noreferrer"
+         data-title="Kareg Jabar" data-sub=""
+         data-desc="Sistem Pelaporan dan Informasi Satu Pintu Regional Jawa Barat."
+         data-roles="Kepala SPPG" data-report="Harian">
+        <span class="mono" aria-hidden="true">KJ</span>
+        <span class="name">Kareg Jabar</span>
+        <svg class="go" aria-hidden="true"><use href="#i-next"/></svg>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ====== DOKUMEN DAN DATABASE ====== -->
+  <!-- Tombol ini menuju halaman terpisah (dokumen.html) berisi daftar tautan dokumen. -->
+  <section aria-labelledby="h-dok">
+    <h2 id="h-dok">Dokumen dan Database</h2>
+    <div class="grid">
+
+      <a class="app nav" href="dokumen.html">
+        <span class="mono" aria-hidden="true">DB</span>
+        <span class="name">Dokumen dan Database</span>
+        <svg class="go" aria-hidden="true"><use href="#i-next"/></svg>
+      </a>
+
+    </div>
+  </section>
+
+  <footer>
+    <span>Klik kartu untuk melihat keterangan, lalu tekan VISIT untuk membuka aplikasi.</span>
+    <span>SPPG Purwakarta Plered Palinggihan 2 · Badan Gizi Nasional</span>
+  </footer>
+
+</div>
+
+<!-- Jendela keterangan -->
+<dialog id="dlg" aria-labelledby="dlg-title">
+  <div class="dlg-head">
+    <span class="mono" id="dlg-mono" aria-hidden="true"></span>
+    <div class="dlg-titles">
+      <h3 id="dlg-title"></h3>
+      <p class="sub" id="dlg-sub"></p>
+    </div>
+  </div>
+  <p class="desc" id="dlg-desc"></p>
+  <dl class="meta" id="dlg-meta">
+    <div id="row-roles"><dt>Pengakses</dt><dd id="dlg-roles"></dd></div>
+    <div id="row-report"><dt>Laporan</dt><dd id="dlg-report"></dd></div>
+  </dl>
+  <p class="host" id="dlg-host"></p>
+  <div class="actions">
+    <button type="button" class="btn ghost" id="dlg-close">Tutup</button>
+    <a class="btn visit" id="dlg-visit" href="#" target="_blank" rel="noopener noreferrer">VISIT <svg aria-hidden="true"><use href="#i-go"/></svg></a>
+  </div>
+</dialog>
+
+<script>
+  // Tombol ganti tema gelap/terang, tersimpan di localStorage.
+  (function () {
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    var root = document.documentElement;
+    var mql = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function current() {
+      var stored = root.getAttribute('data-theme');
+      if (stored === 'light' || stored === 'dark') return stored;
+      return mql.matches ? 'dark' : 'light';
+    }
+
+    btn.addEventListener('click', function () {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+
+  // Klik kartu membuka jendela keterangan. Tombol VISIT membuka aplikasi di tab baru.
+  // Kartu dengan class "nav" (mis. Dokumen dan Database) adalah tautan halaman internal
+  // dan langsung berpindah halaman seperti biasa, tanpa jendela keterangan.
+  // Tanpa JavaScript, kartu tetap berfungsi sebagai tautan langsung. Tidak ada data yang disimpan.
+  (function () {
+    var dlg = document.getElementById('dlg');
+    if (!dlg || typeof dlg.showModal !== 'function') return;
+    var $ = function (id) { return document.getElementById(id); };
+
+    function fill(card) {
+      var title = card.dataset.title || '';
+      $('dlg-mono').textContent = card.querySelector('.mono').textContent;
+      $('dlg-title').textContent = title;
+      var sub = card.dataset.sub || '', desc = card.dataset.desc || '';
+      $('dlg-sub').textContent = sub; $('dlg-sub').hidden = !sub;
+      $('dlg-desc').textContent = desc; $('dlg-desc').hidden = !desc;
+
+      var roles = card.dataset.roles || '', report = card.dataset.report || '';
+      $('dlg-roles').textContent = roles; $('row-roles').hidden = !roles;
+      var rep = $('dlg-report'); rep.textContent = '';
+      var TAG_CLASS = { harian: 'daily', mingguan: 'weekly', bulanan: 'monthly', kondisional: 'cond' };
+      report.split(',').forEach(function (r) {
+        r = r.trim(); if (!r) return;
+        var key = r.toLowerCase().replace(/^dan\s+/, '').trim();
+        var t = document.createElement('span');
+        t.className = 'tag ' + (TAG_CLASS[key] || 'cond');
+        t.textContent = r; rep.appendChild(t);
+      });
+      $('row-report').hidden = !report;
+      $('dlg-meta').hidden = !roles && !report;
+
+      $('dlg-host').textContent = card.hostname || '';
+      $('dlg-visit').href = card.href;
+    }
+
+    document.querySelectorAll('a.app:not(.nav)').forEach(function (card) {
+      card.addEventListener('click', function (e) {
+        if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        e.preventDefault();
+        fill(card);
+        dlg.showModal();
+      });
+    });
+
+    $('dlg-close').addEventListener('click', function () { dlg.close(); });
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+    $('dlg-visit').addEventListener('click', function () { setTimeout(function () { dlg.close(); }, 0); });
+  })();
+</script>
+</body>
+</html>
